@@ -5,7 +5,8 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "nodemailer": "^6.9.13"
+    "nodemailer": "^6.9.13",
+    "psql": "^0.0.1"
   },
   "name": "gym-tracker",
   "version": "1.0.0",
@@ -18,9 +19,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "nodemon": "nodemon server.js"
-   
+    "start:dev": "node server.js",
+    "start:prod": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
