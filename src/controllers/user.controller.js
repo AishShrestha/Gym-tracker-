@@ -173,6 +173,15 @@ const login = async (req, res) => {
       });
     }
 
+    if (!user.status) {
+      delete user.password;
+
+      return res.status(403).json({
+        message: "Account is not verified",
+        data: { user: user },
+      });
+    }
+
     // generate token
     const payload = {
       id: user.id,
@@ -180,7 +189,8 @@ const login = async (req, res) => {
       email: user.email,
     };
     const token = generateToken(payload);
-    res.status(200).json({ token: token }); // Respond with the created user
+    delete user.password;
+    res.status(200).json({ token: token, user: user }); // Respond with the created user
   } catch (err) {
     console.error(err);
     res.status(500).send("Internal server error"); // Respond with an error status
