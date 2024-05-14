@@ -3,7 +3,7 @@ const {
   generateToken,
   generateOTP,
 } = require("../middleware/auth.middleware");
-const prisma = require("../prisma/prismaClient");
+const prisma = require("../../prisma/prismaClient");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const { sendEmail } = require("../util/mailer");
