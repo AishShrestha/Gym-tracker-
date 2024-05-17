@@ -1,16 +1,40 @@
 const fs = require("fs");
 const path = require("path");
+const prisma = require("../prisma/prismaClient");
+
+const seedDay = async () => {
+  try {
+    const dayData = JSON.parse(
+      fs.readFileSync(path.join(__dirname, "../src/asset/day.json"), "utf-8")
+    );
+    for (const data of dayData) {
+      const day = await prisma.day.create({
+        data: data,
+      });
+      console.log(`Seeded day: ${day.name}`);
+    }
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+};
 
 const seedBodyPartsAndWorkouts = async () => {
   try {
     // Read the bodyParts data from the JSON file
     const bodyPartsData = JSON.parse(
-      fs.readFileSync("./../src/asset/bodyParts.json", "utf-8")
+      fs.readFileSync(
+        path.join(__dirname, "../src/asset/bodyParts.json"),
+        "utf-8"
+      )
     );
 
     // Read the workoutsData from the JSON file
     const workoutsData = JSON.parse(
-      fs.readFileSync("./../src/asset/workouts.json", "utf-8")
+      fs.readFileSync(
+        path.join(__dirname, "../src/asset/workouts.json"),
+        "utf-8"
+      )
     );
 
     for (const name of bodyPartsData) {
@@ -40,7 +64,7 @@ const seedBodyPartsAndWorkouts = async () => {
 };
 
 const main = async () => {
-  await seedBodyPartsAndWorkouts();
+  await seedDay();
 };
 
 main();
