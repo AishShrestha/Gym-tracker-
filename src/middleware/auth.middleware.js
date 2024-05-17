@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const AuthMiddleware = (req, res, next) => {
+const authMiddleware = (req, res, next) => {
   // Checking if token exists in header or not
   const authorization = req.headers.authorization;
   if (!authorization) {
@@ -37,4 +37,4 @@ const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000);
 };
 
-module.exports = { AuthMiddleware, generateToken, generateOTP };
+module.exports = { authMiddleware, generateToken, generateOTP };
