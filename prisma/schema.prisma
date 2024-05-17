@@ -31,7 +31,7 @@ model User {
 
 model BodyPart {
   id       Int       @id @default(autoincrement())
-  name     String
+  name     String    @unique
   workouts Workout[]
 }
 

@@ -2,10 +2,12 @@
   "dependencies": {
     "@prisma/client": "^5.13.0",
     "bcrypt": "^5.1.1",
+    "cloudinary": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.13",
     "psql": "^0.0.1"
   },
@@ -21,7 +23,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon server.js",
-    "start:prod": "node server.js"
+    "start:prod": "node server.js",
+    "seed": "node prisma/seed.js"
   },
   "keywords": [],
   "author": "",

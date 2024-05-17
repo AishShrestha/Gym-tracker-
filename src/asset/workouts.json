@@ -1,0 +1,100 @@
+{
+    "Chest": [
+      "Bench Press",
+      "Push-Ups",
+      "Dumbbell Flyes",
+      "Incline Bench Press",
+      "Cable Crossover"
+    ],
+    "Back": [
+      "Pull-Ups",
+      "Bent Over Rows",
+      "Deadlifts",
+      "Lat Pulldowns",
+      "T-Bar Rows"
+    ],
+    "Shoulders": [
+      "Shoulder Press",
+      "Lateral Raises",
+      "Front Raises",
+      "Arnold Press",
+      "Upright Rows"
+    ],
+    "Biceps": [
+      "Bicep Curls",
+      "Hammer Curls",
+      "Concentration Curls",
+      "Preacher Curls",
+      "Barbell Curl"
+    ],
+    "Triceps": [
+      "Tricep Dips",
+      "Skull Crushers",
+      "Tricep Pushdowns",
+      "Close-Grip Bench Press",
+      "Overhead Tricep Extension"
+    ],
+    "Abs/Core": [
+      "Planks",
+      "Crunches",
+      "Russian Twists",
+      "Leg Raises",
+      "Bicycle Crunches"
+    ],
+    "Legs": [
+      "Squats",
+      "Lunges",
+      "Leg Press",
+      "Deadlifts",
+      "Leg Extensions"
+    ],
+    "Quadriceps": [
+      "Leg Press",
+      "Leg Extensions",
+      "Hack Squats",
+      "Bulgarian Split Squats",
+      "Front Squats"
+    ],
+    "Hamstrings": [
+      "Deadlifts",
+      "Hamstring Curls",
+      "Romanian Deadlifts",
+      "Glute-Ham Raises",
+      "Good Mornings"
+    ],
+    "Glutes": [
+      "Hip Thrusts",
+      "Glute Bridges",
+      "Bulgarian Split Squats",
+      "Sumo Deadlifts",
+      "Cable Kickbacks"
+    ],
+    "Calves": [
+      "Calf Raises",
+      "Seated Calf Raises",
+      "Standing Calf Raises",
+      "Donkey Calf Raises",
+      "Calf Press"
+    ],
+    "Forearms": [
+      "Wrist Curls",
+      "Reverse Wrist Curls",
+      "Farmer's Walk",
+      "Plate Pinch",
+      "Grip Strengthening Exercises"
+    ],
+    "Traps": [
+      "Barbell Shrugs",
+      "Dumbbell Shrugs",
+      "Upright Rows",
+      "Face Pulls",
+      "Dumbbell Deadlifts"
+    ],
+    "Neck": [
+      "Neck Flexion",
+      "Neck Extension",
+      "Neck Lateral Flexion",
+      "Neck Resistance Training",
+      "Neck Plank"
+    ]
+  }
