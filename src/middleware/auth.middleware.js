@@ -8,13 +8,14 @@ const authMiddleware = (req, res, next) => {
   }
   // extract jwt token from the  user header
   const token = req.headers.authorization.split(" ")[1];
+
   if (!token) {
     return res.status(401).json({ message: "unauthorized" });
   }
   try {
     // verify the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(decoded);
+    // console.log(decoded);
 
     // attach user info to payload
     req.user = decoded;
