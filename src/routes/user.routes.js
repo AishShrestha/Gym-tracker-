@@ -9,7 +9,7 @@ const {
 } = require("../controllers/user.controller");
 
 router.get("/getAllUsers", authMiddleware, getAllUsers);
-router.post("/registerUser", registerUser);
+router.post("/register-user", registerUser);
 router.post("/checkOtp", checkOtp);
 router.post("/login", login);
 
