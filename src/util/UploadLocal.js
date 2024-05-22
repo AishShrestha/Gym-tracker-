@@ -18,12 +18,23 @@ const genericUploadFiles = async (files, folder) => {
     if (!allowedMines.includes(`.${ext}`)) {
       throw new Error("Invalid File Type");
     }
-    let dir = path.join(UPLOAD_DIR, folder);
+
+    // let dir = path.join(UPLOAD_DIR, folder);
+    const dir = UPLOAD_DIR + folder;
+
+    console.log(dir);
+
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
-    const fileName = `/${new Date().toISOString() + "_" + file.name}`;
+    const fileName = `/${new Date().toISOString().replace(/[:.]/g, "-")}_${
+      file.name
+    }`;
+
+    console.log(fileName);
+
     await file.mv(path.join(dir, fileName));
+
     return `${folder}${fileName}`;
   } catch (err) {
     console.error(err);
