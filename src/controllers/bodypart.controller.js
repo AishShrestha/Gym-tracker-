@@ -40,8 +40,38 @@ const addBodyPart = async (req, res) => {
     res.status(500).send("Error adding body part"); // Respond with an error status
   }
 };
+const deleteBodyPart = async (req, res) => {
+  const id = req.params.id * 1;
+
+  if (isNaN(id)) {
+    return res.status(400).json({ error: "Invalid ID format" });
+  }
+
+  try {
+    const deletedPart = await prisma.bodyPart.delete({
+      where: {
+        id: id,
+      },
+    });
+    res.status(200).json({
+      status: "success",
+      data: {
+        user: null,
+      },
+    });
+  } catch (error) {
+    if (error.code === "P2025") {
+      res.status(404).json({ error: "BodyPart not found" });
+    } else {
+      res
+        .status(500)
+        .json({ error: "Internal server error", details: error.message });
+    }
+  }
+};
 
 module.exports = {
   getAllBodyParts,
   addBodyPart,
+  deleteBodyPart,
 };
