@@ -8,9 +8,9 @@ const {
   checkOtp,
 } = require("../controllers/user.controller");
 
-router.get("/getAllUsers", authMiddleware, getAllUsers);
+router.get("/get-all-users", authMiddleware, getAllUsers);
 router.post("/register-user", registerUser);
-router.post("/checkOtp", checkOtp);
+router.post("/check-otp", checkOtp);
 router.post("/login", login);
 
 module.exports = router;

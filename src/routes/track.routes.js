@@ -3,6 +3,6 @@ const router = express.Router();
 const { addTrack, getAllTracks } = require("../controllers/track.controller");
 const { authMiddleware } = require("../middleware/auth.middleware");
 
-router.post("/addTrack", authMiddleware, addTrack);
-router.get("/getAllTracks", authMiddleware, getAllTracks);
+router.post("/add-track", authMiddleware, addTrack);
+router.get("/get-all-tracks", authMiddleware, getAllTracks);
 module.exports = router;

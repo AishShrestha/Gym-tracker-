@@ -7,7 +7,7 @@ const {
 } = require("../controllers/workout.controller");
 const { authMiddleware } = require("../middleware/auth.middleware");
 
-router.get("/getAllWorkouts", authMiddleware, getAllWorkouts);
-router.get("/getWorkout", authMiddleware, getWorkout);
-router.post("/addWorkout", authMiddleware, addWorkout);
+router.get("/get-all-workouts", authMiddleware, getAllWorkouts);
+router.get("/get-workout", authMiddleware, getWorkout);
+router.post("/add-workout", authMiddleware, addWorkout);
 module.exports = router;
