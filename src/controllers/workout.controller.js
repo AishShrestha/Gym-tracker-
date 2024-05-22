@@ -55,7 +55,23 @@ const getWorkout = async (req, res) => {
   }
 };
 
+const addWorkout = async (req, res) => {
+  const { name, bodyPartId } = req.body;
+  try {
+    const workout = await prisma.workout.create({
+      data: {
+        name,
+        bodyPartId,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 module.exports = {
   getAllWorkouts,
   getWorkout,
+  addWorkout,
 };

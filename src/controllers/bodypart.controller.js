@@ -21,7 +21,27 @@ const getAllBodyParts = async (req, res) => {
     res.status(500).send("Error fetching body parts"); // Respond with an error status
   }
 };
+const addBodyPart = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const bodyPart = await prisma.bodyPart.create({
+      data: {
+        name,
+      },
+    });
+    res.status(201).json({
+      status: "success",
+      data: {
+        bodyPart: bodyPart,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error adding body part"); // Respond with an error status
+  }
+};
 
 module.exports = {
   getAllBodyParts,
+  addBodyPart,
 };
