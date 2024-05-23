@@ -7,6 +7,7 @@ const bodyPartRouter = require("./bodypart.routes");
 const workoutRouter = require("./workout.routes");
 const dayRouter = require("./day.routes");
 const authRouter = require("./auth.routes");
+const weightRouter = require("./weight.routes");
 const path = require("path");
 
 module.exports = (app) => {
@@ -24,5 +25,6 @@ module.exports = (app) => {
   app.use("/api/v1/body-part", bodyPartRouter);
   app.use("/api/v1/workout", workoutRouter);
   app.use("/api/v1/day", dayRouter);
+  app.use("/api/v1/weight", weightRouter);
   app.use("/auth/google", authRouter);
 };
