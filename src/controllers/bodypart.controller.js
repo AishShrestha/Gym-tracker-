@@ -23,10 +23,19 @@ const getAllBodyParts = async (req, res) => {
 };
 const addBodyPart = async (req, res) => {
   const { name } = req.body;
+
+  if (typeof name !== "string" || !name.trim()) {
+    return res.status(400).json({
+      status: "fail",
+      message:
+        "Invalid input: 'name' is required and must be a non-empty string",
+    });
+  }
+
   try {
     const bodyPart = await prisma.bodyPart.create({
       data: {
-        name,
+        name: name.trim(),
       },
     });
     res.status(201).json({
@@ -37,7 +46,18 @@ const addBodyPart = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error adding body part"); // Respond with an error status
+    if (err.code === "P2002") {
+      return res.status(409).json({
+        status: "fail",
+        message: "Body part with this name already exists",
+      });
+    }
+
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error",
+    });
+    s;
   }
 };
 const deleteBodyPart = async (req, res) => {
