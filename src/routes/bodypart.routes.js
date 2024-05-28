@@ -5,7 +5,7 @@ const {
   addBodyPart,
   deleteBodyPart,
 } = require("../controllers/bodypart.controller");
-const { authMiddleware } = require("../middleware/auth.middleware");
+const { authMiddleware } = require("../middleware/jwtAuth.middleware");
 
 router.get("/get-all-body-parts", authMiddleware, getAllBodyParts);
 router.post("/add-body-part", authMiddleware, addBodyPart);
