@@ -5,7 +5,7 @@ const {
   getWorkout,
   addWorkout,
 } = require("../controllers/workout.controller");
-const { authMiddleware } = require("../middleware/auth.middleware");
+const { authMiddleware } = require("../middleware/jwtAuth.middleware");
 
 router.get("/get-all-workouts", authMiddleware, getAllWorkouts);
 router.get("/get-workout", authMiddleware, getWorkout);

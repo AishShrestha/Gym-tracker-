@@ -5,7 +5,7 @@ const {
   getAllTracks,
   deleteTrack,
 } = require("../controllers/track.controller");
-const { authMiddleware } = require("../middleware/auth.middleware");
+const { authMiddleware } = require("../middleware/jwtAuth.middleware");
 
 router.post("/add-track", authMiddleware, addTrack);
 router.get("/get-all-tracks", authMiddleware, getAllTracks);

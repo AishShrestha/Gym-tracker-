@@ -5,7 +5,7 @@ const {
   getWeight,
   deleteWeight,
 } = require("../controllers/weight.controller");
-const { authMiddleware } = require("../middleware/auth.middleware");
+const { authMiddleware } = require("../middleware/jwtAuth.middleware");
 
 router.post("/add-weight", authMiddleware, addWeight);
 router.get("/get-weight/:id", authMiddleware, getWeight);
