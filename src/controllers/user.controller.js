@@ -2,7 +2,7 @@ const {
   jwtAuthMiddleware,
   generateToken,
   generateOTP,
-} = require("../middleware/auth.middleware");
+} = require("../middleware/jwtAuth.middleware");
 const prisma = require("../../prisma/prismaClient");
 const bcrypt = require("bcrypt");
 const { sendEmail } = require("../util/mailer");
