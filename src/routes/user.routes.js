@@ -7,8 +7,11 @@ const {
   login,
   checkOtp,
   deleteUser,
+  getMe,
+
 } = require("../controllers/user.controller");
 
+router.get("/me",authMiddleware,getMe);
 router.get("/get-all-users", authMiddleware, getAllUsers);
 router.post("/register-user", registerUser);
 router.post("/check-otp", checkOtp);
