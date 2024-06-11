@@ -27,6 +27,8 @@ model User {
   routines       Routine[]
   weight         Weight?
   otp            OTP[]
+  facebookId     String?   @unique
+  googleId       String?   @unique
 }
 
 model BodyPart {
@@ -38,7 +40,7 @@ model BodyPart {
 model Workout {
   id         Int       @id @default(autoincrement())
   name       String
-  bodyPart   BodyPart  @relation(fields: [bodyPartId], references: [id])
+  bodyPart   BodyPart  @relation(fields: [bodyPartId], references: [id], onDelete: Cascade)
   bodyPartId Int
   tracks     Track[] // Renamed from Track
   Routine    Routine[]
