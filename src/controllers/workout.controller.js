@@ -2,7 +2,11 @@ const prisma = require("../../prisma/prismaClient");
 
 const getAllWorkouts = async (req, res) => {
   try {
-    const allWorkouts = await prisma.workout.findMany();
+    const allWorkouts = await prisma.workout.findMany({
+      include: {
+        bodyPart:true
+      }
+    });
 
     if (allWorkouts.length === 0) {
       return res.status(404).json({
@@ -73,7 +77,7 @@ const addWorkout = async (req, res) => {
       },
     })
   } catch (err) {
-    console.error(err);
+    console.log(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
