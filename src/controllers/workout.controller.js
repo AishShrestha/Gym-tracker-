@@ -56,14 +56,22 @@ const getWorkout = async (req, res) => {
 };
 
 const addWorkout = async (req, res) => {
+
   const { name, bodyPartId } = req.body;
   try {
     const workout = await prisma.workout.create({
       data: {
         name,
-        bodyPartId,
+        bodyPartId: parseInt(bodyPartId, 10),
       },
+      
     });
+    res.json({
+      status: "success",
+      data: {
+        workout,
+      },
+    })
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
