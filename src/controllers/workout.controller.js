@@ -82,8 +82,29 @@ const addWorkout = async (req, res) => {
   }
 };
 
+
+const deleteWorkout = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const workout = await prisma.workout.delete({
+      where: {
+        id: parseInt(id, 10),
+      },
+    });
+    res.json({
+      status: "success",
+      data: null,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+
 module.exports = {
   getAllWorkouts,
   getWorkout,
   addWorkout,
+  deleteWorkout
 };
