@@ -10,7 +10,7 @@ const { authMiddleware } = require("../middleware/jwtAuth.middleware");
 
 router.get("/get-all-routines", authMiddleware, getAllRoutines);
 router.post("/add-routine", authMiddleware, addRoutine);
-router.get("/get-routine", authMiddleware, getRoutine);
+router.get("/get-routine/:id", authMiddleware, getRoutine);
 router.delete("/delete-routine", authMiddleware, deleteRoutine);
 
 module.exports = router;

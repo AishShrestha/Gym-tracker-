@@ -75,18 +75,20 @@ const addRoutine = async (req, res) => {
   }
 };
 const getRoutine = async (req, res) => {
+  
   const userId = req.params.id * 1;
 
-  if (isNaN(id)) {
+  if (isNaN(userId)) {
     return res.status(400).json({ error: "Invalid ID format" });
   }
   try {
-    const routine = await prisma.routine.findUnique({
+    const routine = await prisma.routine.findMany({
       where: {
-        userId: userId,
+       
+        userId : userId
       },
     });
-    if (!routine) {
+    if (routine.length === 0) {
       return res.status(404).json({ error: "Routine not found" });
     }
     res.status(200).json({
