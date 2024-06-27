@@ -23,24 +23,41 @@ const getAllTracks = async (req, res) => {
 };
 
 const addTrack = async (req, res) => {
-  const { set, rep, weight, workoutId, userId } = req.body;
+  const { set, rep, workoutId, userId } = req.body;
 
   // Validate request data
   if (
     set == null ||
     rep == null ||
-    weight == null ||
     workoutId == null ||
     userId == null
   ) {
     return res.status(400).json({ error: "Invalid request data" });
   }
   try {
+
+     // Check if workoutId exists
+     const workoutExists = await prisma.workout.findUnique({
+      where: { id: workoutId },
+    });
+
+    if (!workoutExists) {
+      return res.status(404).json({ error: "Workout not found" });
+    }
+
+    // Check if userId exists
+    const userExists = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!userExists) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
     const newTrack = await prisma.track.create({
       data: {
         set,
         rep,
-        weight,
         workoutId,
         userId,
         createdAt: new Date(),
