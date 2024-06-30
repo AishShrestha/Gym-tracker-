@@ -84,8 +84,19 @@ const getRoutine = async (req, res) => {
   try {
     const routine = await prisma.routine.findMany({
       where: {
-       
-        userId : userId
+        userId: userId,
+      },
+      include: {
+        workout: {
+          select: {
+            name: true,
+          },
+        },
+        day: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
     if (routine.length === 0) {
