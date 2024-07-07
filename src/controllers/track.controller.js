@@ -99,8 +99,33 @@ const deleteTrack = async (req, res) => {
   }
 };
 
+const createManyTracks = async (req, res) => {
+  const { tracks } = req.body;
+
+  try {
+    if (!Array.isArray(tracks) || tracks.length === 0) {
+      return res.status(400).json({ error: "Tracks data is required and should be a non-empty array" });
+    }
+
+    const createdTracks = await prisma.track.createMany({
+      data: tracks,
+    });
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        tracks,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error creating tracks" });
+  }
+};
+
 module.exports = {
   addTrack,
   getAllTracks,
   deleteTrack,
+  createManyTracks
 };
