@@ -148,9 +148,51 @@ const deleteRoutine = async (req, res) => {
   }
 };
 
+const getRoutineByDay= async(req,res) =>{
+  const dayId = parseInt(req.params.id, 10);
+
+  try{
+    const routines = await prisma.day.findMany({
+      where: {
+        id: dayId,
+      },
+      include: {
+            routines: {
+              select: {
+                workout: {
+                  select: {
+                    name: true,
+                    id: true,
+                  },
+                },
+              },
+
+            }
+          },
+        });
+
+    if (routines.length === 0) {
+      return res.status(404).json({ error: "No routines found for this day" });
+    }
+    res.status(200).json({
+      status: "success",
+      data: {
+        routines,
+      },
+    });
+
+
+  }
+  catch(err){
+    console.error(err);
+    res.status(500).send("Error fetching routines for this day");
+  }
+}
+
 module.exports = {
   getAllRoutines,
   addRoutine,
   getRoutine,
   deleteRoutine,
+  getRoutineByDay,
 };
