@@ -101,10 +101,44 @@ const deleteWorkout = async (req, res) => {
   }
 }
 
+const getWorkoutByBodyPart = async(req, res) => {
+  const bodyPartId = parseInt(req.params.id, 10);
+
+  try {
+    const bodyPartWithWorkouts = await prisma.bodyPart.findUnique({
+      where: {
+        id: bodyPartId,
+      },
+      include: {
+        workouts: { // The correct relation field name as per your schema
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+    if(bodyPartWithWorkouts.length === 0){
+      return res.status(404).json({ message: "No workouts found for this body part" });
+    }
+    res.json({
+      status: "success",
+      data: {
+        bodyPartWithWorkouts,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+ }
+
+
 
 module.exports = {
   getAllWorkouts,
   getWorkout,
   addWorkout,
-  deleteWorkout
+  deleteWorkout,
+  getWorkoutByBodyPart
 };
