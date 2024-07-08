@@ -101,14 +101,11 @@ const deleteWorkout = async (req, res) => {
   }
 }
 
-const getWorkoutByBodyPart = async(req, res) => {
-  const bodyPartId = parseInt(req.params.id, 10);
+const getWorkoutWithBodyPart = async(req, res) => {
+
 
   try {
-    const bodyPartWithWorkouts = await prisma.bodyPart.findUnique({
-      where: {
-        id: bodyPartId,
-      },
+    const bodyPartWithWorkouts = await prisma.bodyPart.findMany({
       include: {
         workouts: { // The correct relation field name as per your schema
           select: {
@@ -124,7 +121,7 @@ const getWorkoutByBodyPart = async(req, res) => {
     res.json({
       status: "success",
       data: {
-        bodyPartWithWorkouts,
+        ...bodyPartWithWorkouts
       },
     });
   } catch (err) {
@@ -140,5 +137,5 @@ module.exports = {
   getWorkout,
   addWorkout,
   deleteWorkout,
-  getWorkoutByBodyPart
+  getWorkoutWithBodyPart
 };
