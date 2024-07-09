@@ -119,10 +119,7 @@ const getWorkoutWithBodyPart = async(req, res) => {
       return res.status(404).json({ message: "No workouts found for this body part" });
     }
     res.json({
-      status: "success",
-      data: {
-        ...bodyPartWithWorkouts
-      },
+        bodyPartWithWorkouts
     });
   } catch (err) {
     console.error(err);
